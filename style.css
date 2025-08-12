@@ -150,7 +150,7 @@ button,
   backdrop-filter: blur(15px) !important;
 }
 
-button:hover,
+button:not(._0_filter_btn):hover,
 .btn-glass:hover {
   background: var(--glass-highlight) !important;
   transform: translateY(-2px) scale(1.02) !important;
@@ -173,6 +173,8 @@ button:hover,
 /* Tags & Badges */
 span.domain,
 span.__domain-name,
+a.__domain-name,
+.__domain-name,
 .team_badge {
   background: var(--glass-bg) !important;
   border: 1px solid var(--glass-border) !important;
@@ -180,6 +182,89 @@ span.__domain-name,
   color: var(--text-white) !important;
   padding: 6px 12px !important;
   backdrop-filter: blur(10px) !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  transition: all 0.2s ease !important;
+}
+
+a.__domain-name:hover,
+.__domain-name:hover {
+  background: var(--glass-highlight) !important;
+  border-color: var(--accent-blue) !important;
+  color: var(--accent-blue) !important;
+  box-shadow: 0 4px 15px var(--glass-shadow) !important;
+}
+
+/* Related Searches */
+.related-items {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 15px 0 !important;
+}
+
+.related-items a {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 20px !important;
+  color: var(--text-white) !important;
+  padding: 8px 16px !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 8px var(--glass-shadow) !important;
+  transition: all 0.2s ease !important;
+  font-size: 0.9em !important;
+}
+
+.related-items a:hover {
+  background: var(--glass-highlight) !important;
+  border-color: var(--accent-blue) !important;
+  color: var(--accent-blue) !important;
+  box-shadow: 0 4px 15px var(--glass-shadow) !important;
+  transform: translateY(-1px) !important;
+}
+
+.related-items a svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: currentColor !important;
+  opacity: 0.8 !important;
+}
+
+.related-items a:hover svg {
+  opacity: 1 !important;
+}
+
+/* Widget Section Headers */
+.inlineHeader {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: var(--text-white) !important;
+  text-decoration: none !important;
+  padding: 8px 12px !important;
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(10px) !important;
+  font-weight: 600 !important;
+  margin-bottom: 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+.inlineHeader:hover {
+  background: var(--glass-highlight) !important;
+  color: var(--accent-blue) !important;
+  transform: translateY(-1px) !important;
+}
+
+.inlineHeader svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: currentColor !important;
 }
 
 /* Links */
@@ -231,6 +316,133 @@ input::placeholder {
   background: var(--glass-highlight);
 }
 
+/* Assistant Tags Sidebar Panel */
+.tags-pane {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(12px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px var(--glass-shadow) !important;
+  margin: 8px !important;
+  padding: 8px !important;
+}
+
+.tag-selector {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(8px) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05) !important;
+  padding: 8px 10px !important;
+  margin: 2px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  color: var(--text-white) !important;
+  font-size: 0.9em !important;
+}
+
+.tag-selector:hover {
+  background: var(--glass-highlight) !important;
+  border-color: var(--accent-blue) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.tag-selector input:checked + .icon + .name {
+  color: var(--accent-blue) !important;
+  font-weight: 600 !important;
+}
+
+.tag-selector input:checked ~ * {
+  color: var(--accent-blue) !important;
+}
+
+.tag-selector input {
+  display: none !important;
+}
+
+.tag-selector .icon {
+  color: var(--text-muted) !important;
+  transition: color 0.2s ease !important;
+}
+
+.tag-selector:hover .icon {
+  color: var(--accent-blue) !important;
+}
+
+.tag-selector .name {
+  flex: 1 !important;
+  font-weight: 500 !important;
+  color: var(--text-white) !important;
+}
+
+.tag-selector .count {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  padding: 2px 6px !important;
+  font-size: 0.75em !important;
+  font-weight: 600 !important;
+  color: var(--text-muted) !important;
+  backdrop-filter: blur(6px) !important;
+  min-width: 16px !important;
+  text-align: center !important;
+}
+
+.tag-selector .chevron {
+  color: var(--text-muted) !important;
+  opacity: 0.7 !important;
+  transition: all 0.2s ease !important;
+}
+
+.tag-selector:hover .chevron {
+  color: var(--accent-blue) !important;
+  opacity: 1 !important;
+  transform: translateX(2px) !important;
+}
+
+/* More Menu Buttons */
+.thread-more-menu-toggle,
+.thread-more-menu button {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  color: var(--text-white) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.2s ease !important;
+}
+
+.thread-more-menu-toggle:hover,
+.thread-more-menu button:hover {
+  background: var(--glass-highlight) !important;
+  border-color: var(--accent-blue) !important;
+  color: var(--accent-blue) !important;
+}
+
+.thread-more-menu {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(15px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+  padding: 8px !important;
+}
+
+/* Resize Handle */
+.resize-handle {
+  background: var(--glass-border) !important;
+  border-radius: 2px !important;
+  transition: background 0.2s ease !important;
+}
+
+.resize-handle:hover {
+  background: var(--accent-blue) !important;
+}
+
 /* Text Colors */
 body,
 .search-result *,
@@ -245,6 +457,98 @@ body,
 
 .__sri-url {
   color: var(--accent-green) !important;
+}
+
+.__sri-time {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  color: var(--text-muted) !important;
+  padding: 4px 8px !important;
+  font-size: 0.85em !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  display: inline-block !important;
+  margin: 2px 0 !important;
+}
+
+/* Lens Selector Styling */
+.k_ui_toggle_switch.--mini {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+}
+
+.k_ui_toggle_switch_bar {
+  background: var(--accent-blue) !important;
+}
+
+._0_k_ui_dropdown_first_item {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  color: var(--text-white) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+._0_k_ui_dropdown_first_item:hover {
+  background: var(--glass-highlight) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+._0_k_ui_dropdown_li {
+  color: var(--text-white) !important;
+  transition: all 0.3s ease !important;
+}
+
+._0_k_ui_dropdown_li:hover {
+  background: var(--glass-highlight) !important;
+  color: var(--accent-blue) !important;
+}
+
+/* Filter Buttons (Region, Order By, Time, Options, etc.) */
+.filter-item,
+.filter-item-inner,
+._0_filter_btn,
+._0_filters .filter-item,
+.search-filters .filter-item,
+.search-header .filter-item,
+._0_dropdown_header,
+._0_k_ui_dropdown:not(._0_lenses .k_ui_dropdown) {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  color: var(--text-white) !important;
+  backdrop-filter: blur(15px) !important;
+  box-shadow: 0 4px 15px var(--glass-shadow) !important;
+  transition: all 0.2s ease !important;
+}
+
+.filter-item:hover,
+._0_filter_btn:hover,
+._0_k_ui_dropdown:not(._0_lenses .k_ui_dropdown):hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 6px 20px var(--glass-shadow) !important;
+}
+
+/* Advanced Search Button */
+._0_advanced_search_btn,
+.advanced-search-button,
+._0_options_btn {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  color: var(--text-white) !important;
+  backdrop-filter: blur(15px) !important;
+  padding: 8px 16px !important;
+}
+
+._0_advanced_search_btn:hover,
+.advanced-search-button:hover,
+._0_options_btn:hover {
+  background: var(--glass-highlight) !important;
+  transform: translateY(-2px) scale(1.02) !important;
 }
 
 /* Remove conflicting backgrounds */

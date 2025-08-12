@@ -1,6 +1,21 @@
-A iOS26 Liquid Glass Inspired Light Theme for Kagi Search/Kagi Assistant
+A iOS26 Liquid Glass Inspired Light Theme for Kagi Search/Kagi Assistant with Light and Dark Themes
 
-<img width="1708" height="922" alt="Screenshot 2025-08-12 at 10 02 15 AM" src="https://github.com/user-attachments/assets/a079633b-01f8-401a-86e2-037501d1f4e4" />
-<img width="1706" height="918" alt="Screenshot 2025-08-12 at 10 01 50 AM" src="https://github.com/user-attachments/assets/10e1cebe-8197-44d6-a583-0d453aa6c15e" />
-<img width="603" height="1311" alt="IMG_0254" src="https://github.com/user-attachments/assets/5c401b21-28a9-4a2e-aec4-8f8acbf120cb" />
-<img width="603" height="1311" alt="IMG_0256" src="https://github.com/user-attachments/assets/93af1943-a262-4b14-b096-2b6870059479" />
+## Light Theme (style.css)
+
+### Kagi Search - Light Theme
+![Light Theme Search Desktop](light-search.png)
+![Light Theme Search Mobile](light-search-mobile.PNG)
+
+### Kagi Assistant - Light Theme
+![Light Theme Assistant Desktop](light-assistant.png)
+![Light Theme Assistant Mobile](light-assistant-mobile.PNG)
+
+## Dark Theme (dark.css)
+
+### Kagi Search - Dark Theme
+![Dark Theme Search Desktop](dark-search.png)
+![Dark Theme Search Mobile](dark-search-mobile.PNG)
+
+### Kagi Assistant - Dark Theme
+![Dark Theme Assistant Desktop](dark-assistant.png)
+![Dark Theme Assistant Mobile](dark-assistant-mobile.PNG)
