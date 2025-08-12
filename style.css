@@ -102,9 +102,26 @@ form#form:focus-within {
   margin: 20px 0 !important;
 }
 
+.chat_bubble:hover {
+  background: var(--glass-highlight) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 var(--glass-highlight) !important;
+}
+
+.chat_bubble:focus-within:before,
+.chat_bubble:hover:before {
+  background-color: transparent !important;
+}
+
 #chat_box > div:nth-child(1) {
   border: 2px solid var(--glass-border) !important;
   border-radius: 22px !important;
+}
+
+#chat_box > div:nth-child(1):hover {
+  background: var(--glass-highlight) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 var(--glass-highlight) !important;
 }
 
 /* Navigation */
