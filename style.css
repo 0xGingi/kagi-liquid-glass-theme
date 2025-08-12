@@ -1,0 +1,252 @@
+/* LIQUID GLASS THEME FOR KAGI*/
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-highlight: rgba(255, 255, 255, 0.4);
+  --glass-shadow: rgba(0, 0, 0, 0.1);
+  --text-white: rgba(0, 0, 0, 0.85);
+  --text-muted: rgba(0, 0, 0, 0.6);
+  --accent-blue: rgba(59, 130, 246, 1);
+  --accent-green: rgba(34, 197, 94, 1);
+  --accent-teal: rgba(20, 184, 166, 1);
+  
+  /* Kagi Variables */
+  --color-scheme: light;
+  --app-bg: transparent;
+  --app-text: var(--text-white);
+  --header-bg: var(--glass-bg);
+  --input-bg: var(--glass-bg);
+  --btn-primary-bg: var(--accent-blue);
+  --search-result-title: var(--text-white);
+  --search-result-url-link: var(--accent-teal);
+}
+
+/* Global Background */
+body {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 40%, #ddd6fe 70%, #fce7f3 100%) !important;
+  background-attachment: fixed !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+              radial-gradient(circle at 70% 70%, rgba(147, 197, 253, 0.1) 0%, transparent 40%),
+              radial-gradient(circle at 20% 80%, rgba(196, 181, 253, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Liquid Glass Base */
+.glass,
+.liquid-glass,
+header,
+#form,
+form#form,
+.search-result,
+.sri-group,
+.chat_bubble,
+div.sidebar-box,
+.dropdown .dd-list,
+.k_ui_dropdown_data_list,
+.promptOptionsSelector,
+.quick-settings,
+.advanced-search-modal {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(12px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Search Form */
+#form,
+form#form {
+  border: 2px solid var(--glass-border) !important;
+  border-radius: 25px !important;
+  padding: 15px 25px !important;
+}
+
+#form:focus-within,
+form#form:focus-within {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 8px 32px var(--glass-shadow), 0 0 0 3px rgba(74, 144, 226, 0.2) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Search Results */
+.search-result,
+.sri-group {
+  margin-bottom: 20px !important;
+  padding: 20px !important;
+}
+
+.search-result:hover,
+.sri-group:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 35px rgba(31, 38, 135, 0.25) !important;
+}
+
+/* Chat Bubbles */
+.chat_bubble {
+  border-radius: 25px !important;
+  padding: 25px !important;
+  margin: 20px 0 !important;
+}
+
+#chat_box > div:nth-child(1) {
+  border: 2px solid var(--glass-border) !important;
+  border-radius: 22px !important;
+}
+
+/* Navigation */
+.landing-category-select .landing_cat_buttons > button {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 15px !important;
+  color: var(--text-muted) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.landing-category-select .landing_cat_buttons > button:hover,
+.landing-category-select .landing_cat_buttons > button.--active {
+  color: var(--text-white) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px var(--glass-shadow) !important;
+}
+
+/* Buttons */
+button,
+.btn-glass {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  color: var(--text-white) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+button:hover,
+.btn-glass:hover {
+  background: var(--glass-highlight) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* Dropdowns */
+.k_ui_dropdown_data_list .list_items > ._0_k_ui_dropdown_li:hover,
+.dropdown .dd-list ._0_list_items li:hover {
+  background: var(--glass-highlight) !important;
+  border-radius: 8px !important;
+  color: var(--text-white) !important;
+}
+
+/* Sidebar */
+.thread-list > li:is(.active, :hover, :focus-within) {
+  background: var(--glass-highlight) !important;
+  border-radius: 12px !important;
+}
+
+/* Tags & Badges */
+span.domain,
+span.__domain-name,
+.team_badge {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 10px !important;
+  color: var(--text-white) !important;
+  padding: 6px 12px !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Links */
+.__sri-title .__sri_title_link {
+  color: var(--text-white) !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.__sri-title .__sri_title_link:hover {
+  color: var(--accent-blue) !important;
+  border-bottom-color: var(--accent-blue) !important;
+}
+
+/* Input Fields */
+input[type="search"],
+input[type="text"] {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-white) !important;
+}
+
+input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+/* Focus States */
+:focus-visible {
+  outline: 2px solid var(--accent-blue) !important;
+  outline-offset: 2px !important;
+  border-radius: 8px !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--glass-bg);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glass-highlight);
+}
+
+/* Text Colors */
+body,
+.search-result *,
+.chat_bubble *,
+.sidebar-box * {
+  color: var(--text-white) !important;
+}
+
+.__sri-desc {
+  color: var(--text-muted) !important;
+}
+
+.__sri-url {
+  color: var(--accent-green) !important;
+}
+
+/* Remove conflicting backgrounds */
+.main-center-box,
+#mainContent {
+  background: transparent !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .glass,
+  .liquid-glass {
+    border-radius: 15px !important;
+    backdrop-filter: blur(15px) !important;
+  }
+  
+  #form,
+  form#form {
+    border-radius: 20px !important;
+    padding: 12px 20px !important;
+  }
+}
