@@ -1,0 +1,834 @@
+/* LIQUID GLASS THEME FOR KAGI - ADAPTIVE LIGHT/DARK */
+
+/* Light Theme Variables */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-highlight: rgba(255, 255, 255, 0.4);
+  --glass-shadow: rgba(0, 0, 0, 0.1);
+  --text-white: rgba(0, 0, 0, 0.85);
+  --text-muted: rgba(0, 0, 0, 0.6);
+  --accent-primary: rgba(59, 130, 246, 1);
+  --accent-secondary: rgba(20, 184, 166, 1);
+  --accent-tertiary: rgba(34, 197, 94, 1);
+  
+  /* Kagi Variables */
+  --color-scheme: light;
+  --app-bg: transparent;
+  --app-text: var(--text-white);
+  --header-bg: var(--glass-bg);
+  --input-bg: var(--glass-bg);
+  --btn-primary-bg: var(--accent-primary);
+  --search-result-title: var(--text-white);
+  --search-result-url-link: var(--accent-secondary);
+
+  /* Surface tokens */
+  --surface-1: rgba(255, 255, 255, 0.4);
+  --surface-2: rgba(255, 255, 255, 0.6);
+  --surface-border: rgba(0, 0, 0, 0.1);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --elev-soft: 0 8px 20px rgba(0,0,0,0.15);
+  --elev-hard: 0 16px 40px rgba(0,0,0,0.25);
+}
+
+/* Dark Theme Variables - Override when dark theme is active */
+html.theme_moon_dark,
+html.theme_dark,
+html[class*="theme_dark"] {
+  --glass-bg: rgba(0, 0, 0, 0.25);
+  --glass-border: rgba(180, 180, 180, 0.12);
+  --glass-highlight: rgba(255, 255, 255, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.7);
+  --text-white: rgba(255, 255, 255, 0.95);
+  --text-muted: rgba(255, 255, 255, 0.65);
+  --accent-primary: rgba(180, 180, 180, 1);
+  --accent-secondary: rgba(160, 160, 160, 1);
+  --accent-tertiary: rgba(200, 200, 200, 1);
+  
+  /* Kagi Variables */
+  --color-scheme: dark;
+  --app-text: var(--text-white);
+  --search-result-title: var(--text-white);
+  --search-result-url-link: var(--accent-secondary);
+
+  /* Surface tokens */
+  --surface-1: rgba(0, 0, 0, 0.4);
+  --surface-2: rgba(0, 0, 0, 0.6);
+  --surface-border: rgba(255, 255, 255, 0.04);
+  --elev-soft: 0 8px 20px rgba(0,0,0,0.7);
+  --elev-hard: 0 16px 40px rgba(0,0,0,0.8);
+}
+
+/* Global Background - Adaptive Light/Dark */
+body {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 40%, #ddd6fe 70%, #fce7f3 100%) !important;
+  background-attachment: fixed !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+              radial-gradient(circle at 70% 70%, rgba(147, 197, 253, 0.1) 0%, transparent 40%),
+              radial-gradient(circle at 20% 80%, rgba(196, 181, 253, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Dark Theme Background Overrides */
+html.theme_moon_dark body,
+html.theme_dark body,
+html[class*="theme_dark"] body {
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 30%, #050505 60%, #0f0f0f 100%) !important;
+}
+
+html.theme_moon_dark body::before,
+html.theme_dark body::before,
+html[class*="theme_dark"] body::before {
+  background: radial-gradient(circle at 30% 20%, rgba(180, 180, 180, 0.04) 0%, transparent 50%),
+              radial-gradient(circle at 70% 70%, rgba(160, 160, 160, 0.03) 0%, transparent 40%),
+              radial-gradient(circle at 20% 80%, rgba(200, 200, 200, 0.02) 0%, transparent 60%);
+}
+
+/* Liquid Glass Base */
+.glass,
+.liquid-glass,
+header,
+#form,
+form#form,
+.dropdown .dd-list,
+.k_ui_dropdown_data_list,
+.promptOptionsSelector,
+.quick-settings,
+.advanced-search-modal,
+._0_results_summary_box,
+.domain-info-modal {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(20px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 16px 50px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight), 0 0 0 1px rgba(255, 255, 255, 0.03) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Search Form */
+#form,
+form#form {
+  border: 2px solid var(--glass-border) !important;
+  border-radius: 25px !important;
+  padding: 15px 25px !important;
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+/* Light theme search form - transparent background */
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) #form,
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) form#form {
+  background: transparent !important;
+}
+
+/* Dark theme search form - dark background */
+html.theme_moon_dark #form,
+html.theme_dark #form,
+html[class*="theme_dark"] #form,
+html.theme_moon_dark form#form,
+html.theme_dark form#form,
+html[class*="theme_dark"] form#form {
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+
+#form:focus-within,
+form#form:focus-within {
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 8px 32px var(--glass-shadow), 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Dark theme focus - use different focus color */
+html.theme_moon_dark #form:focus-within,
+html.theme_dark #form:focus-within,
+html[class*="theme_dark"] #form:focus-within,
+html.theme_moon_dark form#form:focus-within,
+html.theme_dark form#form:focus-within,
+html[class*="theme_dark"] form#form:focus-within {
+  box-shadow: 0 8px 32px var(--glass-shadow), 0 0 0 3px rgba(180, 180, 180, 0.15) !important;
+}
+
+/* Search Results */
+.search-result,
+.sri-group {
+  margin-bottom: 20px !important;
+  padding: 20px !important;
+  background: var(--surface-1) !important;
+  border: 1px solid var(--surface-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--elev-soft) !important;
+  backdrop-filter: none !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.search-result:hover,
+.sri-group:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--elev-hard) !important;
+}
+
+/* Chat Bubbles */
+.chat_bubble {
+  background: var(--surface-1) !important;
+  border: 1px solid var(--surface-border) !important;
+  border-radius: 25px !important;
+  padding: 25px !important;
+  margin: 20px 0 !important;
+  box-shadow: var(--elev-soft) !important;
+  backdrop-filter: none !important;
+}
+
+.chat_bubble:hover {
+  background: var(--surface-2) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--elev-hard) !important;
+}
+
+.chat_bubble:focus-within:before,
+.chat_bubble:hover:before {
+  background-color: transparent !important;
+}
+
+#chat_box > div:nth-child(1) {
+  background: var(--surface-1) !important;
+  border: 1px solid var(--surface-border) !important;
+  border-radius: 22px !important;
+}
+
+#chat_box > div:nth-child(1):hover {
+  background: var(--surface-2) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--elev-hard) !important;
+}
+
+/* Navigation */
+.landing-category-select .landing_cat_buttons > button {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 15px !important;
+  color: var(--text-muted) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.landing-category-select .landing_cat_buttons > button:hover,
+.landing-category-select .landing_cat_buttons > button.--active {
+  color: var(--text-white) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px var(--glass-shadow) !important;
+}
+
+/* Buttons */
+button,
+.btn-glass {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  color: var(--text-white) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+button:not(._0_filter_btn):hover,
+.btn-glass:hover {
+  background: var(--glass-highlight) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* Links */
+.__sri-title .__sri_title_link {
+  color: var(--text-white) !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.__sri-title .__sri_title_link:hover {
+  color: var(--accent-primary) !important;
+  border-bottom-color: var(--accent-primary) !important;
+}
+
+/* Tags & Badges */
+span.domain,
+span.__domain-name,
+a.__domain-name,
+.__domain-name,
+.team_badge {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 10px !important;
+  color: var(--text-white) !important;
+  padding: 6px 12px !important;
+  backdrop-filter: blur(10px) !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  transition: all 0.2s ease !important;
+}
+
+a.__domain-name:hover,
+.__domain-name:hover {
+  background: var(--glass-highlight) !important;
+  border-color: var(--accent-primary) !important;
+  color: var(--accent-primary) !important;
+  box-shadow: 0 4px 15px var(--glass-shadow) !important;
+}
+
+/* Sidebar Boxes */
+div.sidebar-box {
+  background: var(--surface-1) !important;
+  border: 1px solid var(--surface-border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--elev-soft) !important;
+  backdrop-filter: none !important;
+}
+
+/* Quick Answer (glass refinements) */
+._0_results_summary_box {
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 8px 32px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight) !important;
+  overflow: hidden !important;
+}
+._0_results_summary_box .doggo_head {
+  border-bottom: 1px solid var(--glass-border) !important;
+}
+
+/* Auto-suggestions (glass with proper z-index) */
+.auto_suggestions {
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden !important;
+  z-index: 99999 !important;
+  position: absolute !important;
+  margin-top: 5px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 100% !important;
+}
+
+/* Dark theme dropdown overrides */
+html.theme_moon_dark .auto_suggestions,
+html.theme_dark .auto_suggestions,
+html[class*="theme_dark"] .auto_suggestions {
+  background: rgba(0, 0, 0, 0.85) !important;
+  border: 1px solid rgba(180, 180, 180, 0.2) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Search suggestion items - Light theme */
+.auto_suggestions .sug,
+.auto_suggestions li,
+.auto_suggestions a {
+  color: rgba(0, 0, 0, 0.9) !important;
+  background: transparent !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.2s ease !important;
+  font-size: 14px !important;
+}
+
+.auto_suggestions .sug:hover,
+.auto_suggestions li:hover,
+.auto_suggestions a:hover {
+  background: rgba(100, 100, 100, 0.15) !important;
+  color: rgba(100, 100, 100, 1) !important;
+  border-left: 3px solid var(--accent-primary) !important;
+  padding-left: 13px !important;
+}
+
+.auto_suggestions .sug:last-child,
+.auto_suggestions li:last-child {
+  border-bottom: none !important;
+}
+
+/* Search suggestion icons - Light theme */
+.auto_suggestions .sug svg,
+.auto_suggestions li svg,
+.auto_suggestions a svg {
+  fill: rgba(0, 0, 0, 0.6) !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin-right: 8px !important;
+}
+
+.auto_suggestions .sug:hover svg,
+.auto_suggestions li:hover svg,
+.auto_suggestions a:hover svg {
+  fill: var(--accent-primary) !important;
+}
+
+/* Dark theme dropdown item overrides */
+html.theme_moon_dark .auto_suggestions .sug,
+html.theme_moon_dark .auto_suggestions li,
+html.theme_moon_dark .auto_suggestions a,
+html.theme_dark .auto_suggestions .sug,
+html.theme_dark .auto_suggestions li,
+html.theme_dark .auto_suggestions a,
+html[class*="theme_dark"] .auto_suggestions .sug,
+html[class*="theme_dark"] .auto_suggestions li,
+html[class*="theme_dark"] .auto_suggestions a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.theme_moon_dark .auto_suggestions .sug:hover,
+html.theme_moon_dark .auto_suggestions li:hover,
+html.theme_moon_dark .auto_suggestions a:hover,
+html.theme_dark .auto_suggestions .sug:hover,
+html.theme_dark .auto_suggestions li:hover,
+html.theme_dark .auto_suggestions a:hover,
+html[class*="theme_dark"] .auto_suggestions .sug:hover,
+html[class*="theme_dark"] .auto_suggestions li:hover,
+html[class*="theme_dark"] .auto_suggestions a:hover {
+  background: rgba(180, 180, 180, 0.1) !important;
+  color: rgba(180, 180, 180, 1) !important;
+}
+
+html.theme_moon_dark .auto_suggestions .sug svg,
+html.theme_moon_dark .auto_suggestions li svg,
+html.theme_moon_dark .auto_suggestions a svg,
+html.theme_dark .auto_suggestions .sug svg,
+html.theme_dark .auto_suggestions li svg,
+html.theme_dark .auto_suggestions a svg,
+html[class*="theme_dark"] .auto_suggestions .sug svg,
+html[class*="theme_dark"] .auto_suggestions li svg,
+html[class*="theme_dark"] .auto_suggestions a svg {
+  fill: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Top navigation tabs */
+.app-nav .nav_item {
+  color: var(--text-muted) !important;
+  border-radius: 10px !important;
+  padding: 8px 12px !important;
+}
+.app-nav .nav_item:hover {
+  color: var(--text-white) !important;
+  background: var(--surface-1) !important;
+  border: 1px solid var(--surface-border) !important;
+}
+.app-nav .nav_item.--active {
+  color: var(--text-white) !important;
+  background: var(--surface-2) !important;
+  border: 1px solid var(--accent-primary) !important;
+  box-shadow: var(--elev-soft) !important;
+}
+
+/* Related Searches */
+.related-items {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 15px 0 !important;
+}
+
+.related-items a {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 20px !important;
+  color: var(--text-white) !important;
+  padding: 8px 16px !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 8px var(--glass-shadow) !important;
+  transition: all 0.2s ease !important;
+  font-size: 0.9em !important;
+}
+
+.related-items a:hover {
+  background: var(--glass-highlight) !important;
+  border-color: var(--accent-primary) !important;
+  color: var(--accent-primary) !important;
+  box-shadow: 0 4px 15px var(--glass-shadow) !important;
+  transform: translateY(-1px) !important;
+}
+
+.related-items a svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: currentColor !important;
+  opacity: 0.8 !important;
+}
+
+.related-items a:hover svg {
+  opacity: 1 !important;
+}
+
+/* Widget Section Headers */
+.inlineHeader {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: var(--text-white) !important;
+  text-decoration: none !important;
+  padding: 8px 12px !important;
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(10px) !important;
+  font-weight: 600 !important;
+  margin-bottom: 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+.inlineHeader:hover {
+  background: var(--glass-highlight) !important;
+  color: var(--accent-primary) !important;
+  transform: translateY(-1px) !important;
+}
+
+.inlineHeader svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: currentColor !important;
+}
+
+/* Input Fields */
+input[type="search"],
+input[type="text"] {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-white) !important;
+}
+
+input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+/* Assistant Tags Sidebar Panel */
+.tags-pane {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(12px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px var(--glass-shadow) !important;
+  margin: 8px !important;
+  padding: 8px !important;
+}
+
+.tag-selector {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(8px) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) !important;
+  padding: 8px 10px !important;
+  margin: 2px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  color: var(--text-white) !important;
+  font-size: 0.9em !important;
+}
+
+.tag-selector:hover {
+  background: var(--glass-highlight) !important;
+  border-color: var(--accent-primary) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.tag-selector input:checked + .icon + .name {
+  color: var(--accent-primary) !important;
+  font-weight: 600 !important;
+}
+
+.tag-selector input:checked ~ * {
+  color: var(--accent-primary) !important;
+}
+
+.tag-selector input {
+  display: none !important;
+}
+
+.tag-selector .icon {
+  color: var(--text-muted) !important;
+  transition: color 0.2s ease !important;
+}
+
+.tag-selector:hover .icon {
+  color: var(--accent-primary) !important;
+}
+
+.tag-selector .name {
+  flex: 1 !important;
+  font-weight: 500 !important;
+  color: var(--text-white) !important;
+}
+
+.tag-selector .count {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  padding: 2px 6px !important;
+  font-size: 0.75em !important;
+  font-weight: 600 !important;
+  color: var(--text-muted) !important;
+  backdrop-filter: blur(6px) !important;
+  min-width: 16px !important;
+  text-align: center !important;
+}
+
+.tag-selector .chevron {
+  color: var(--text-muted) !important;
+  opacity: 0.7 !important;
+  transition: all 0.2s ease !important;
+}
+
+.tag-selector:hover .chevron {
+  color: var(--accent-primary) !important;
+  opacity: 1 !important;
+  transform: translateX(2px) !important;
+}
+
+/* More Menu Buttons */
+.thread-more-menu-toggle,
+.thread-more-menu button {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  color: var(--text-white) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.2s ease !important;
+}
+
+.thread-more-menu-toggle:hover,
+.thread-more-menu button:hover {
+  background: var(--glass-highlight) !important;
+  border-color: var(--accent-primary) !important;
+  color: var(--accent-primary) !important;
+}
+
+.thread-more-menu {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(15px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+  padding: 8px !important;
+}
+
+/* Resize Handle */
+.resize-handle {
+  background: var(--glass-border) !important;
+  border-radius: 2px !important;
+  transition: background 0.2s ease !important;
+}
+
+.resize-handle:hover {
+  background: var(--accent-primary) !important;
+}
+
+/* Text Colors */
+body,
+.search-result *,
+.chat_bubble *,
+.sidebar-box * {
+  color: var(--text-white) !important;
+}
+
+.__sri-desc {
+  color: var(--text-muted) !important;
+}
+
+.__sri-url {
+  color: var(--accent-secondary) !important;
+}
+
+.__sri-time {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  color: var(--text-muted) !important;
+  padding: 4px 8px !important;
+  font-size: 0.85em !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  display: inline-block !important;
+  margin: 2px 0 !important;
+}
+
+/* Lens Selector Styling */
+.k_ui_toggle_switch.--mini {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+}
+
+.k_ui_toggle_switch_bar {
+  background: var(--accent-primary) !important;
+}
+
+/* Light Theme Toggle Switch Off State */
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) .k_ui_toggle_switch:not(.--on) .k_ui_toggle_switch_bar {
+  background: rgba(150, 150, 150, 0.6) !important;
+  opacity: 0.5 !important;
+}
+
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) .k_ui_toggle_switch:not(.--on) {
+  background: rgba(200, 200, 200, 0.3) !important;
+  border: 1px solid rgba(150, 150, 150, 0.4) !important;
+}
+
+/* Light Theme Toggle Switch Hover States */
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) .k_ui_toggle_switch:hover:not(.--on) .k_ui_toggle_switch_bar {
+  background: rgba(120, 120, 120, 0.8) !important;
+  opacity: 0.7 !important;
+}
+
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) .k_ui_toggle_switch:hover:not(.--on) {
+  border: 1px solid rgba(120, 120, 120, 0.6) !important;
+}
+
+/* Dark Theme Toggle Switch Off State */
+html.theme_moon_dark .k_ui_toggle_switch:not(.--on) .k_ui_toggle_switch_bar,
+html.theme_dark .k_ui_toggle_switch:not(.--on) .k_ui_toggle_switch_bar,
+html[class*="theme_dark"] .k_ui_toggle_switch:not(.--on) .k_ui_toggle_switch_bar {
+  background: rgba(80, 80, 80, 0.6) !important;
+  opacity: 0.4 !important;
+}
+
+html.theme_moon_dark .k_ui_toggle_switch:not(.--on),
+html.theme_dark .k_ui_toggle_switch:not(.--on),
+html[class*="theme_dark"] .k_ui_toggle_switch:not(.--on) {
+  background: rgba(40, 40, 40, 0.5) !important;
+  border: 1px solid rgba(80, 80, 80, 0.3) !important;
+}
+
+/* Dark Theme Toggle Switch Hover States */
+html.theme_moon_dark .k_ui_toggle_switch:hover:not(.--on) .k_ui_toggle_switch_bar,
+html.theme_dark .k_ui_toggle_switch:hover:not(.--on) .k_ui_toggle_switch_bar,
+html[class*="theme_dark"] .k_ui_toggle_switch:hover:not(.--on) .k_ui_toggle_switch_bar {
+  background: rgba(100, 100, 100, 0.7) !important;
+  opacity: 0.6 !important;
+}
+
+html.theme_moon_dark .k_ui_toggle_switch:hover:not(.--on),
+html.theme_dark .k_ui_toggle_switch:hover:not(.--on),
+html[class*="theme_dark"] .k_ui_toggle_switch:hover:not(.--on) {
+  border: 1px solid rgba(120, 120, 120, 0.4) !important;
+}
+
+._0_k_ui_dropdown_first_item {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  color: var(--text-white) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+._0_k_ui_dropdown_first_item:hover {
+  background: var(--glass-highlight) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+._0_k_ui_dropdown_li {
+  color: var(--text-white) !important;
+  transition: all 0.3s ease !important;
+}
+
+._0_k_ui_dropdown_li:hover {
+  background: var(--glass-highlight) !important;
+  color: var(--accent-primary) !important;
+}
+
+.filter-item,
+.filter-item-inner,
+._0_filter_btn,
+._0_filters .filter-item,
+.search-filters .filter-item,
+.search-header .filter-item,
+._0_dropdown_header,
+._0_k_ui_dropdown:not(._0_lenses .k_ui_dropdown) {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  color: var(--text-white) !important;
+  backdrop-filter: blur(15px) !important;
+  box-shadow: 0 4px 15px var(--glass-shadow) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Light theme filter hovers */
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) .filter-item:hover,
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) ._0_filter_btn:hover,
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) ._0_k_ui_dropdown:not(._0_lenses .k_ui_dropdown):hover {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 6px 20px var(--glass-shadow) !important;
+}
+
+/* Dark theme filter hovers */
+html.theme_moon_dark .filter-item:hover,
+html.theme_dark .filter-item:hover,
+html[class*="theme_dark"] .filter-item:hover,
+html.theme_moon_dark ._0_filter_btn:hover,
+html.theme_dark ._0_filter_btn:hover,
+html[class*="theme_dark"] ._0_filter_btn:hover,
+html.theme_moon_dark ._0_k_ui_dropdown:not(._0_lenses .k_ui_dropdown):hover,
+html.theme_dark ._0_k_ui_dropdown:not(._0_lenses .k_ui_dropdown):hover,
+html[class*="theme_dark"] ._0_k_ui_dropdown:not(._0_lenses .k_ui_dropdown):hover {
+  background: var(--glass-highlight) !important;
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 6px 20px var(--glass-shadow) !important;
+}
+
+/* Advanced Search Button */
+._0_advanced_search_btn,
+.advanced-search-button,
+._0_options_btn {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  color: var(--text-white) !important;
+  backdrop-filter: blur(15px) !important;
+  padding: 8px 16px !important;
+}
+
+._0_advanced_search_btn:hover,
+.advanced-search-button:hover,
+._0_options_btn:hover {
+  background: var(--glass-highlight) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* Remove conflicting backgrounds */
+.main-center-box,
+#mainContent {
+  background: transparent !important;
+}
+
+/* Ensure main content has lower z-index than dropdowns */
+#mainContent,
+.main-center-box,
+.search-results-container,
+.results-container {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Header and navigation should be below dropdowns but above content */
+header,
+.app-nav,
+nav {
+  position: relative !important;
+  z-index: 100 !important;
+}
