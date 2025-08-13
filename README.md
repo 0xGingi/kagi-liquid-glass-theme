@@ -1,5 +1,13 @@
 A iOS26 Liquid Glass Inspired Theme for Kagi Search/Kagi Assistant with Light and Dark Themes
 
+## todo:
+
+* Theme News
+* Fix Mobile Search Bar when typing
+* Fix Mobile Search Options Drop down (Order, Time...etc)
+* Fix Mobile Assistant Sidebar
+
+
 ## Kagi Search - Light Theme
 <img src="screenshots/light-search.png" width="600" alt="Light Theme Search Desktop">
 
