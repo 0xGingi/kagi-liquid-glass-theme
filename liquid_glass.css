@@ -30,6 +30,12 @@
   --radius-md: 12px;
   --elev-soft: 0 8px 20px rgba(0,0,0,0.15);
   --elev-hard: 0 16px 40px rgba(0,0,0,0.25);
+
+  /* Mobile-specific tokens (used under media queries) */
+  --glass-bg-mobile: rgba(255, 255, 255, 0.85);
+  --glass-border-mobile: rgba(0, 0, 0, 0.12);
+  --input-bg-mobile: rgba(255, 255, 255, 0.95);
+  --placeholder-mobile: rgba(0, 0, 0, 0.6);
 }
 
 /* Dark Theme Variables - Override when dark theme is active */
@@ -58,6 +64,12 @@ html[class*="theme_dark"] {
   --surface-border: rgba(255, 255, 255, 0.04);
   --elev-soft: 0 8px 20px rgba(0,0,0,0.7);
   --elev-hard: 0 16px 40px rgba(0,0,0,0.8);
+
+  /* Mobile-specific tokens (used under media queries) */
+  --glass-bg-mobile: rgba(0, 0, 0, 0.7);
+  --glass-border-mobile: rgba(255, 255, 255, 0.12);
+  --input-bg-mobile: rgba(12, 12, 12, 0.9);
+  --placeholder-mobile: rgba(255, 255, 255, 0.7);
 }
 
 /* Global Background - Adaptive Light/Dark */
@@ -124,14 +136,83 @@ form#form {
   border: 2px solid var(--glass-border) !important;
   border-radius: 25px !important;
   padding: 15px 25px !important;
-  position: relative !important;
   z-index: 1000 !important;
+  isolation: isolate !important; /* allow background overlay behind content */
 }
 
-/* Light theme search form - transparent background */
+/* Kagi search (current markup): ensure non-transparent bar */
+.search_form_box #searchForm.search-form,
+.search_form_box .search-input-container,
+#searchForm.search-form .search-input-container {
+  position: relative !important;
+  border-radius: 22px !important;
+  border: 1px solid var(--glass-border) !important;
+  overflow: visible !important;
+  isolation: isolate !important; /* needed for ::before layering */
+}
+
+/* Light theme background for new structure */
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) .search_form_box .search-input-container::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: inherit !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+/* Dark theme background for new structure */
+html.theme_moon_dark .search_form_box .search-input-container::before,
+html.theme_dark .search_form_box .search-input-container::before,
+html[class*="theme_dark"] .search_form_box .search-input-container::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: inherit !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+/* Input and icons inside new structure */
+#searchBar.search-input {
+  position: relative !important;
+  z-index: 1 !important;
+}
+.search_form_box .search-form-icons {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Light theme search form - readable (not fully transparent) */
 html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) #form,
 html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) form#form {
-  background: transparent !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+}
+
+/* Light theme search form overlay to defeat transparent inner wrappers */
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) #form::before,
+html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) form#form::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: inherit !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
 }
 
 /* Dark theme search form - dark background */
@@ -142,6 +223,25 @@ html.theme_moon_dark form#form,
 html.theme_dark form#form,
 html[class*="theme_dark"] form#form {
   background: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Dark theme overlay for search form */
+html.theme_moon_dark #form::before,
+html.theme_dark #form::before,
+html[class*="theme_dark"] #form::before,
+html.theme_moon_dark form#form::before,
+html.theme_dark form#form::before,
+html[class*="theme_dark"] form#form::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.45) !important; /* darker for readability */
+  border: 1px solid var(--glass-border) !important;
+  border-radius: inherit !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
 }
 
 #form:focus-within,
@@ -822,7 +922,7 @@ html[class*="theme_dark"] ._0_k_ui_dropdown:not(._0_lenses .k_ui_dropdown):hover
 .search-results-container,
 .results-container {
   position: relative !important;
-  z-index: 1 !important;
+  z-index: auto !important; /* avoid trapping children below header stacking context */
 }
 
 /* Header and navigation should be below dropdowns but above content */
@@ -831,4 +931,109 @@ header,
 nav {
   position: relative !important;
   z-index: 100 !important;
+}
+
+/* Elevate search container so suggestions always overlay header tabs/buttons */
+.search_form_box {
+  z-index: 1000 !important;
+}
+
+/* Elevate actual sticky search form wrapper (do not force position) */
+#searchForm.search-form,
+.search_form_box #searchForm.search-form {
+  z-index: 1000 !important;
+}
+
+/* Mobile readability improvements */
+@media (max-width: 640px) {
+  /* Ensure settings/drawers overlay above the search on small screens */
+  .search_form_box,
+  #form,
+  form#form,
+  #searchForm.search-form {
+    z-index: 10 !important; /* lower than headers/side panels */
+  }
+
+  /* Search container: stronger background and border, lower blur for clarity */
+  html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) #form,
+  html:not(.theme_moon_dark):not(.theme_dark):not([class*="theme_dark"]) form#form,
+  html.theme_moon_dark #form,
+  html.theme_dark #form,
+  html[class*="theme_dark"] #form,
+  html.theme_moon_dark form#form,
+  html.theme_dark form#form,
+  html[class*="theme_dark"] form#form {
+    background: var(--glass-bg-mobile) !important;
+    border: 1px solid var(--glass-border-mobile) !important;
+    backdrop-filter: blur(8px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(120%) !important;
+    padding: 12px 14px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 8px 24px var(--glass-shadow) !important;
+  }
+
+  /* Prevent jumpy focus animation on tiny screens */
+  #form:focus-within,
+  form#form:focus-within {
+    transform: none !important;
+    box-shadow: 0 8px 24px var(--glass-shadow), 0 0 0 2px rgba(59, 130, 246, 0.12) !important;
+  }
+  html.theme_moon_dark #form:focus-within,
+  html.theme_dark #form:focus-within,
+  html[class*="theme_dark"] #form:focus-within,
+  html.theme_moon_dark form#form:focus-within,
+  html.theme_dark form#form:focus-within,
+  html[class*="theme_dark"] form#form:focus-within {
+    box-shadow: 0 8px 24px var(--glass-shadow), 0 0 0 2px rgba(180, 180, 180, 0.12) !important;
+  }
+
+  /* Input text sizing and contrast */
+  #form input[type="search"],
+  #form input[type="text"],
+  form#form input[type="search"],
+  form#form input[type="text"] {
+    font-size: 16px !important; /* prevents iOS zoom */
+    line-height: 1.4 !important;
+    color: var(--text-white) !important;
+    background: var(--input-bg-mobile) !important;
+    border-radius: 12px !important;
+    padding: 10px 12px !important;
+  }
+
+  #form input::placeholder,
+  form#form input::placeholder {
+    color: var(--placeholder-mobile) !important;
+    opacity: 0.9 !important;
+  }
+  /* iOS placeholder vendor variant */
+  #form input::-webkit-input-placeholder,
+  form#form input::-webkit-input-placeholder { color: var(--placeholder-mobile) !important; opacity: 0.9 !important; }
+
+  /* Common Kagi input icon/button classes (color + hit area) */
+  #form .search_btn,
+  form#form .search_btn,
+  #form .k_icon,
+  form#form .k_icon {
+    color: var(--text-muted) !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+  #form .search_btn:hover,
+  form#form .search_btn:hover,
+  #form .k_icon:hover,
+  form#form .k_icon:hover {
+    color: var(--text-white) !important;
+  }
+
+  /* Suggestion list bigger tap targets */
+  .auto_suggestions {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+  .auto_suggestions .sug,
+  .auto_suggestions li,
+  .auto_suggestions a {
+    padding: 14px 16px !important;
+    font-size: 16px !important; /* better tap targets */
+  }
 }
